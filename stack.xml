@@ -1,0 +1,7 @@
+<stack>
+  <description brief="nasa_common">nasa_common</description>
+  <author>Maintained by Paul Dinh</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/nasa_common</url>
+</stack>

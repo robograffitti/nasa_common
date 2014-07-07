@@ -1,0 +1,38 @@
+diff -rupN protoc-gen-lua/pkg_list.py protoc-gen-lua2/pkg_list.py
+--- protoc-gen-lua/pkg_list.py	1969-12-31 18:00:00.000000000 -0600
++++ protoc-gen-lua2/pkg_list.py	2013-03-01 15:48:14.090565486 -0600
+@@ -0,0 +1,22 @@
++import os
++
++def get_build_deps(path):
++    return ['liblua5.1-0-dev']
++
++def get_pkg(path):
++    d = {}
++    d['DEBNAME'] = 'protoc-gen-lua'
++    d['DEBMAINT'] = 'Brian Wightman [brian.j.wightman@nasa.gov]'
++    d['DEBARCH'] = 'i386'
++    d['DEBDEPENDS'] = 'python-protobuf'
++    d['DEBDESC'] = 'Google\'s Protocol Buffers project, ported to Lua http://code.google.com/p/protoc-gen-lua/'
++
++    def group(srcpre, dstpre, srcs):
++        return [(os.path.join(srcpre, s), os.path.join(dstpre, s)) for s in srcs]
++
++    d['DEBFILES'] = [('plugin/plugin_pb2.py', 'opt/nasa/drc/lib/python2.7/dist-packages/protoc-gen-lua/plugin_pb2.py')]
++    d['DEBFILES'] += [('plugin/protoc-gen-lua', 'opt/nasa/drc/bin/protoc-gen-lua')]
++
++    d['DEBFILES'] += group('protobuf', 'opt/nasa/drc/lib/lua/protoc-gen-lua', os.listdir('protobuf'))
++
++    return d
+diff -rupN protoc-gen-lua/plugin/protoc-gen-lua protoc-gen-lua2/plugin/protoc-gen-lua
+--- protoc-gen-lua/plugin/protoc-gen-lua	2013-03-01 14:44:02.710477616 -0600
++++ protoc-gen-lua2/plugin/protoc-gen-lua	2013-03-01 15:36:38.242549616 -0600
+@@ -11,6 +11,8 @@
+ # as listed at <url: http://www.opensource.org/licenses/bsd-license.php >.
+ 
+ import sys
++sys.path.append('/opt/nasa/drc/lib/python2.7/dist-packages/protoc-gen-lua')
++
+ import os.path as path
+ from cStringIO import StringIO
+ 

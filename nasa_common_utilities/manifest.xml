@@ -1,0 +1,26 @@
+<package>
+    <description brief="nasa_common_utilities">
+        This package contains the components of the nasa_common_utilities package
+    </description>
+    <!--NOTE: set the license and author before you publish this code-->
+    <license></license>
+    <author>Unknown Author</author>
+
+    <!-- the package dependency breaks non-Orocos systems -->
+    <!--<depend package="log4cpp" />-->
+
+    <!-- the rosdep alternative breaks Orocos systems -->
+    <!-- <rosdep name="log4cpp" /> -->
+
+    <!-- use r2_cmake/FindLog4cpp.cmake as a work-around -->
+
+    <!-- <depend package="hayai" /> -->
+    <rosdep name="envoy" />
+    <rosdep name="debsums" />
+
+    <export>
+        <cpp cflags="-I${prefix}/include -I/opt/nasa/common/stacks/nasa_common/nasa_common_utilities/include" 
+             lflags="-L${prefix}/lib -L/opt/nasa/common/stacks/nasa_common/nasa_common_utilities/lib -Wl,-rpath,${prefix}/lib -lnasa_common_utilities -llog4cpp"/>
+    </export>
+</package>
+
