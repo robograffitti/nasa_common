@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>nasa_common</name>
+  <version>0.0.1</version>
+  <description>The nasa_common package</description>
+  <maintainer email="allison.thackston@nasa.gov">Allison Thackston</maintainer>
+  <license>BSD</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>nasa_cmake</run_depend>
+<!-- <run_depend>nasa_common_utilities</run_depend> -->
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

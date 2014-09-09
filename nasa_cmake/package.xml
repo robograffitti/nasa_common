@@ -1,0 +1,13 @@
+<package>
+  <name>nasa_cmake</name>
+  <version>0.0.1</version>
+  <description >nasa_cmake</description>
+  <maintainer email="allison.thackston@nasa.gov">Allison Thackston</maintainer>
+  <license>BSD</license>
+  <author>Brian Wightman</author>
+  <url>http://ros.org/wiki/nasa_cmake</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>
+
+
