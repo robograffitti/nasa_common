@@ -19,5 +19,6 @@
     <!-- use r2_cmake/FindLog4cpp.cmake as a work-around -->
 
     <!-- <depend package="hayai" /> -->
+    
 </package>
 

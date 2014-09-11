@@ -68,6 +68,10 @@ add_library(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/Logger.cpp)
 target_link_libraries(${PROJECT_NAME} ${Log4cpp_LIBRARIES})
 
 
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  PATTERN ".svn" EXCLUDE
+)
 
 # benchmarks
 #rosbuild_add_executable(LoggerBenchmark ${PROJECT_SOURCE_DIR}/test/LoggerBenchmark.cpp)

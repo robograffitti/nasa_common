@@ -8,7 +8,7 @@
   
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>nasa_cmake</run_depend>
-<!-- <run_depend>nasa_common_utilities</run_depend> -->
+  <run_depend>nasa_common_utilities</run_depend>
 
   <export>
     <metapackage/>
