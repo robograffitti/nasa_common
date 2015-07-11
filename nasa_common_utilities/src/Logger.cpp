@@ -8,47 +8,40 @@ using namespace log4cpp;
 namespace RCS
 {
     Logger::Logger()
+        : propertyFile("log4cpp.properties")
+        , packagePath(ros::package::getPath("nasa_common_utilities"))
     {
+        std::string localPropertyFile = "./" + propertyFile;
+
         try
         {
-            PropertyConfigurator::configure(PROPERTY_PATH_LOCAL);
+            PropertyConfigurator::configure(localPropertyFile);
         }
         catch (ConfigureFailure& e)
         {
-            if (not (string(e.what()) == "File "+string(PROPERTY_PATH_LOCAL)+" does not exist"))
+            if (not (string(e.what()) == "File " + localPropertyFile + " does not exist"))
             {
-                cerr << "WARN: Could not load local dir property file [" << PROPERTY_PATH_LOCAL <<  "]: " << e.what() << endl;
+                cerr << "WARN: Could not load local dir property file [" << localPropertyFile <<  "]: " << e.what() << endl;
             }
-#ifdef BUILD_PREFIX
+
+            std::string packagePropertyFile = packagePath + "/share/" + propertyFile;
+
             try
             {
-                PropertyConfigurator::configure(PROPERTY_PATH_BUILD);
+                PropertyConfigurator::configure(packagePropertyFile);
             }
             catch (ConfigureFailure& e)
             {
-                cerr << "WARN: Could not load local dir or build dir property file [" << PROPERTY_PATH_BUILD <<  "]: " << e.what() << endl;
-#endif
-#ifdef INSTALL_PREFIX
-                try
-                {
-                    PropertyConfigurator::configure(PROPERTY_PATH_INSTALL);
-                }
-                catch (ConfigureFailure& e)
-                {
-#endif
-                    Appender* rootAppender = new OstreamAppender("root", &cout);
-                    Layout* rootLayout = new BasicLayout();
-                    rootAppender->setLayout(rootLayout);
-                    Category::getRoot().addAppender(rootAppender);
-                    Category::getRoot().setPriority(Priority::WARN);
+                cerr << "WARN: Could not load package dir property file [" << packagePropertyFile <<  "]: " << e.what() << endl;
 
-                    Category::getRoot().log(Priority::WARN, "Could not load local dir, build dir, or install dir property file ["+string(PROPERTY_PATH_INSTALL)+"]: "+string(e.what())+". Using defaults of [std::out] and [WARN].");
-#ifdef INSTALL_PREFIX
-                }
-#endif
-#ifdef BUILD_PREFIX
+                Appender* rootAppender = new OstreamAppender("root", &cout);
+                Layout* rootLayout = new BasicLayout();
+                rootAppender->setLayout(rootLayout);
+                Category::getRoot().addAppender(rootAppender);
+                Category::getRoot().setPriority(Priority::WARN);
+
+                Category::getRoot().log(Priority::WARN, "Could not load local dir or package dir property file: " + string(e.what()) + ". Using defaults of [std::out] and [WARN].");
             }
-#endif
         }
     }
 

@@ -10,7 +10,7 @@
 #  SET(Log4cpp_FIND_QUIETLY TRUE)
 #ENDIF (Log4cpp_INCLUDE_DIR)
 
-find_program(ROSSTACK_CMD NAMES rosstack PATHS /opt/ros/fuerte/bin)
+find_program(ROSSTACK_CMD NAMES rosstack PATHS /opt/ros/hydro/bin)
 execute_process(COMMAND ${ROSSTACK_CMD} find orocos_toolchain RESULT_VARIABLE OROCOS_FOUND_ERROR OUTPUT_VARIABLE OROCOS_PATH_UGLY ERROR_VARIABLE OROCOS_ERROR_STRING)
 if (NOT OROCOS_FOUND_ERROR)
     message(STATUS "FindLog4cpp: Orocos found.  Priority given to Orocos' version of Log4cpp.")

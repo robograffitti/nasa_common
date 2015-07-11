@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -z "$LUA_PATH" ]; then
+    LUA_PATH=";"
+fi
+
+# devel path
+export LUA_PATH="$LUA_PATH;@CMAKE_CURRENT_SOURCE_DIR@/scripts/?.lua"

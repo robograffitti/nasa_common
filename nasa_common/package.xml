@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>nasa_common</name>
-  <version>0.0.1</version>
+  <version>1.1.0</version>
   <description>The nasa_common package</description>
   <maintainer email="allison.thackston@nasa.gov">Allison Thackston</maintainer>
   <license>BSD</license>
